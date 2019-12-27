@@ -8,7 +8,7 @@
             <h1 class="page-title">Advertisement</h1>
             <div class="advertisement-page">
                 <div class="row">
-                    <?php $ads_list['ads'] = [];
+                    <?php 
                     if ($ads_list['ads']):foreach ($ads_list['ads'] as $ad): ?>
                             <div class="col-md-4">
                                 <div class="advertisement-main">

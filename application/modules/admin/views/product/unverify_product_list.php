@@ -72,7 +72,7 @@
                                             <th>Quantity</th>
                                             <th>Discount</th>
 
-                                            <th>Status</th>
+                                            <!--<th>Status</th>-->
 
                                             <th>Action</th>
 
@@ -92,12 +92,12 @@
                                                 <td><?=$value['price'];?></td>
                                                 <td><?=$value['quantity'];?></td>
                                                 <td><?=$value['discount'];?></td>
-                                                <td>
+<!--                                                <td>
                                                     <?php if($value['quantity']>0){ ?>
                                                         <span class="label label-default">Available</span>
                                                     <?php }else{ ?>
                                                         <span class="label label-danger"> O. O. S.</span> 
-                                                    <?php }?></td>
+                                                    <?php }?></td>-->
                                                 <td><a href="<?= base_url('admin/product-detail/'.$value['product_id']);?>"><span class="label action-button"><i class="fa fa-eye"></i></span></a></td>
                                             </tr>
                                             <?php $count++;

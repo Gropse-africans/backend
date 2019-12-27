@@ -19,8 +19,6 @@
 
                 </p>
 
-                <a href="<?php echo base_url('dashboard'); ?>">
-
             </div>
 
         </div>
@@ -38,35 +36,57 @@
                 </a>
 
             </li>
-            <!--          <li class="menu_sub">
-            
-                        <a href="#">
-            
-                          <i class="fa fa-first-order"></i>
-            
-                          <span>Order Management</span>
-            
-                          <span class="arrow"></span>
-            
-                        </a>
-            
-                        <ul class="down_menu">
-            
-                          <li>
-            
-                            <a href="<?php echo base_url('vendor/order-list'); ?>">Order List</a>
-            
-                          </li>
-            
-                        </ul>
-            
-                      </li>-->
-
             <li class="menu_sub">
 
                 <a href="#">
 
-                    <i class="fa fa-archive"></i>
+                    <i class="fa fa-cubes"></i>
+
+                    <span>Order Management</span>
+
+                    <span class="arrow"></span>
+
+                </a>
+
+                <ul class="down_menu">
+
+                    <li>
+
+                        <a href="<?php echo base_url('vendor/order-list'); ?>">Order List</a>
+
+                    </li>
+
+                </ul>
+
+            </li>
+            <li class="menu_sub">
+
+                <a href="#">
+
+                    <i class="fa fa-first-order"></i>
+
+                    <span>Booking Management</span>
+
+                    <span class="arrow"></span>
+
+                </a>
+
+                <ul class="down_menu">
+
+                    <li>
+
+                        <a href="<?php echo base_url('vendor/booking-list'); ?>">Booking List</a>
+
+                    </li>
+
+                </ul>
+
+            </li>
+            <li class="menu_sub">
+
+                <a href="#">
+
+                    <i class="fa fa-shopping-cart"></i>
 
                     <span>Product Management</span>
 
@@ -86,30 +106,30 @@
                 </ul>
 
             </li>
-            <!--          <li class="menu_sub">
-            
-                        <a href="#">
-            
-                          <i class="fa fa-handshake-o"></i>
-            
-                          <span>Service Management</span>
-            
-                          <span class="arrow"></span>
-            
-                        </a>
-            
-                        <ul class="down_menu">
-            
-                          <li>
-            
-                            <a href="<?php echo base_url('vendor/service-list'); ?>">Service List</a>
-                            <a href="<?php echo base_url('vendor/add-service'); ?>">Add Service</a>
-            
-                          </li>
-            
-                        </ul>
-            
-                      </li>-->
+            <li class="menu_sub">
+
+                <a href="#">
+
+                    <i class="fa fa-handshake-o"></i>
+
+                    <span>Service Management</span>
+
+                    <span class="arrow"></span>
+
+                </a>
+
+                <ul class="down_menu">
+
+                    <li>
+
+                        <a href="<?php echo base_url('vendor/service-list'); ?>">Service List</a>
+                        <a href="<?php echo base_url('vendor/add-service'); ?>">Add Service</a>
+
+                    </li>
+
+                </ul>
+
+            </li>
 
             <!--          <li>
             
@@ -168,6 +188,39 @@
                     </li>
 
                 </ul>
+
+            </li>
+            <li>
+
+                <a href="<?php echo base_url('vendor/about-us'); ?>">
+
+                    <i class=""></i>
+
+                    <span>About Us</span>
+
+                </a>
+
+            </li>
+            <li>
+
+                <a href="<?php echo base_url('vendor/terms-condition'); ?>">
+
+                    <i class=""></i>
+
+                    <span>Terms & Condition</span>
+
+                </a>
+
+            </li>
+            <li>
+
+                <a href="<?php echo base_url('vendor/privacy-policy'); ?>">
+
+                    <i class=""></i>
+
+                    <span>Privacy Policy</span>
+
+                </a>
 
             </li>
         </ul>

@@ -11,7 +11,7 @@ class Api_model extends CI_Model {
     function apiCallHeader($path, $headerData, $bodyData) {
         $headers = array("Lang:" . $headerData['lang'], "DeviceId:" . $headerData['device_id'], "SecurityToken:" . $headerData['security_token'], "Content-Type:multipart/form-data");
         $url = base_url() . "user/" . $path;
-    //   $url = "http://auctionbuy.in/african_super_market/user/" . $path;
+//       $url = "http://auctionbuy.in/african_super_market/user/" . $path;
         //intialize cURL and send POST data
         $ch = @curl_init();
         @curl_setopt($ch, CURLOPT_POST, true);
@@ -27,8 +27,8 @@ class Api_model extends CI_Model {
 
     function apiCall($path, $strPost) {
         $headers = array("Content-Type:multipart/form-data");
-      $url = base_url() . "user/" . $path;
-        // $url = "http://auctionbuy.in/african_super_market/user/" . $path;
+        $url = base_url() . "user/" . $path;
+//         $url = "http://auctionbuy.in/african_super_market/user/" . $path;
         //intialize cURL and send POST data
         $ch = @curl_init();
         @curl_setopt($ch, CURLOPT_POST, true);

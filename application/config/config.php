@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/projects/api/african_super_market/';
-
+// $config['base_url'] = 'http://localhost/projects/api/african_super_market/';
+$config['base_url'] = 'http://auctionbuy.in/african_super_market/';
 /*
 |--------------------------------------------------------------------------
 | Index File

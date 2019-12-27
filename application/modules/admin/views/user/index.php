@@ -92,7 +92,7 @@
                                                     <td><?= $user['mobile'] ?></td>
                                                     <td>
                                                         <?php if($user['status']==0){?>
-                                                            <span class="label label-default">Un-verify</span>
+                                                            <span class="label label-default">Email Not Verified</span>
                                                         <?php }else{ ?>
                                                         <div class="mytoggle">
                                                             <label class="switch">

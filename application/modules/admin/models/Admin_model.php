@@ -175,5 +175,50 @@ class Admin_model extends CI_Model {
             return false;
         }
     }
+    
+     public function getServicePlanData($condition) {   
+        $query = $this->db->where($condition)->from('service_detail sd')->join('service_plan sp','sp.plan_id=sd.service_plan_id')
+                ->get();
+        return $query->result_array();
+    }
+    
+    public function getOrderItems($condition) {
+        $query = $this->db->select('ot.*,p.name as product_name,v.name as vendor_name')->where($condition)->from('order_items ot')->join('products p','p.product_id=ot.product_id')->join('vendor v','v.id=ot.vendor_id')
+                ->get();
+        return $query->result_array();
+    }
+    
+    public function getBooking($condition) {
+        $query = $this->db->select('b.*,u.email as user_email,v.id as vendor_id,v.name as vendor_name,s.name as service_name,sp.name as plan_name')
+                ->from('service_booking b')
+                ->join('service s','s.service_id=b.service_id')
+                ->join('service_detail sd','sd.detail_id=b.detail_id')
+                ->join('service_plan sp','sp.plan_id=sd.service_plan_id')
+                ->join('users u','u.id=b.user_id')
+                ->join('vendor v','v.id=s.vendor_id')
+                ->where($condition)
+                ->order_by('booking_id','DESC')->get();
+        return $query;
+    }
+    
+    public function getOrder($condition) {
+        $query = $this->db->select('o.*,u.email,(SELECT SUM(total) from af_order_items WHERE order_id=o.order_id AND vendor_id='.$condition['ot.vendor_id'].') as total_amount,(SELECT SUM(discount) from af_order_items WHERE order_id=o.order_id AND vendor_id='.$condition['ot.vendor_id'].') as total_discount')
+                ->from('orders o')
+                ->join('order_items ot','ot.order_id=o.order_id')
+                ->join('users u','u.id=o.user_id')
+                ->where($condition)
+                ->group_by('order_id')->get();
+        return $query;
+    }
+    
+    public function help_support()
+    {
+        $this->db->select('contact_us.*,contact_subject.subject');
+        $this->db->from('contact_us');
+        $this->db->join('contact_subject','contact_subject.id = contact_us.subject_id');
+        //$this->db->group_by('id');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }

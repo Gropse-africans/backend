@@ -27,7 +27,7 @@ if(!$_REQUEST) {
             }else{
                 $error                          = false;
                 $code                           = 201;
-                $msg                            = 'Password not match.';
+                $msg                            = 'password incorrect.';
                 $data                           = new stdClass();
             }
     }

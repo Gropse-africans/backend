@@ -69,15 +69,34 @@ $route['admin/edit-product/(:any)']          = 'admin/Admin/edit_product';
 $route['admin/brand']                        = 'admin/Admin/brand';
 $route['admin/brand/(:any)']                 = 'admin/Admin/edit_brand';
 
-$route['admin/category']                     = 'admin/Admin/category';
-$route['admin/category/(:any)']              = 'admin/Admin/edit_category';
-$route['admin/sub-category']                 = 'admin/Admin/sub_category';
-$route['admin/sub-category/(:any)']          = 'admin/Admin/edit_sub_category';
+$route['admin/product-category']             = 'admin/Admin/category';
+$route['admin/product-category/(:any)']      = 'admin/Admin/edit_category';
+$route['admin/product-sub-category']         = 'admin/Admin/sub_category';
+$route['admin/product-sub-category/(:any)']  = 'admin/Admin/edit_sub_category';
 
 //$route['admin/upload-image/(:any)']          = 'admin/Admin/upload_image';
 
 $route['admin/advertisment']                 = 'admin/Admin/advertisment';
 $route['admin/subscription-plan']            = 'admin/Admin/subscription_plan';
+
+
+
+$route['admin/edit-service/(:any)']          = 'admin/Admin/edit_service';
+$route['admin/service-detail/(:any)']        = 'admin/Admin/service_detail';
+$route['admin/add-service']                  = 'admin/Admin/add_service';
+$route['admin/service-list']                 = 'admin/Admin/service_list';
+$route['admin/service-category/(:any)']      = 'admin/Admin/edit_service_category';
+$route['admin/service-category']             = 'admin/Admin/service_category';
+$route['admin/price-management']             = 'admin/Admin/shipping_tax_management';
+$route['admin/order-list']                   = 'admin/Admin/order_list';
+$route['admin/order-detail/(:any)']          = 'admin/Admin/order_detail';
+
+$route['admin/booking-list']                 = 'admin/Admin/booking_list';
+$route['admin/booking-detail/(:any)']        = 'admin/Admin/booking_detail';
+$route['admin/attribute-list']               = 'admin/Admin/attribute_list';
+$route['admin/attribute-detail/(:any)']      = 'admin/Admin/attribute_detail';
+$route['admin/help-Support']                 = 'admin/Admin/help_support';
+
 $route['admin/logout']                       = 'admin/Admin/logout';
 
 //---------------------------------- Admin -------------------------------//
@@ -116,6 +135,7 @@ $route['user/adsList']                      = 'api/UserApi/adsList';
 $route['user/getServiceCategory']           = 'api/UserApi/getServiceCategory';
 $route['user/getServiceList']               = 'api/UserApi/getServiceList';
 $route['user/getServiceDetail']             = 'api/UserApi/getServiceDetail';
+$route['user/getSimilarServices']           = 'api/UserApi/getSimilarServices';
 $route['user/getServiceReviews']            = 'api/UserApi/getServiceReviews';
 $route['user/addServiceReviews']            = 'api/UserApi/addServiceReviews';
 $route['user/serviceBooking']               = 'api/UserApi/serviceBooking';
@@ -124,7 +144,12 @@ $route['user/myOrders']                     = 'api/UserApi/myOrders';
 $route['user/orderDetail']                  = 'api/UserApi/orderDetail';
 $route['user/myBookings']                   = 'api/UserApi/myBookings';
 $route['user/bookingDetail']                = 'api/UserApi/bookingDetail';
+$route['user/filterVendor']                 = 'api/UserApi/filterVendor';
+$route['user/submitContactUs']              = 'api/UserApi/submitContactUs';
+$route['user/getContactSubject']            = 'api/UserApi/getContactSubject';
 
+$route['user/sendMessage']                  = 'api/UserApi/sendMessage';
+$route['user/getMessageDetail']             = 'api/UserApi/getMessageDetail';
 //----------------------------- Web Services For User --------------------------------//
 
 //----------------------------- Web Services End Point ---------------------------------//
@@ -149,6 +174,10 @@ $route['privacy-policy']                   ='web/web/privacy_policy';
 $route['delivery-information']             ='web/web/delivery_information';
 $route['contact-us']                       ='web/web/contact_us';
 $route['search-results']                   ='web/web/search';
+$route['disclaimer']                       ='web/web/disclaimer';
+$route['company-profile']                  ='web/web/company_profile';
+$route['cookie-policy']                    ='web/web/cookie_policy';
+$route['acceptable-use-policy']            ='web/web/acceptable_use_policy';
 $route['logout']                           ='web/web/logout';
 $route['my-account']                       ='web/user';
 $route['edit-account']                     ='web/user/edit_profile';
@@ -163,6 +192,9 @@ $route['ajax/user_login']                  ='web/ajax/reset_password';
 //---------------------------------- Website -------------------------------//
 //---------------------------------Vendor ----------------------------------------------//
 $route['vendor']                            = 'vendor/Login/index';
+$route['vendor/login']                      = 'vendor/Login/index';
+$route['vendor/my-profile']                 = 'vendor/Home/index';
+$route['vendor/edit-profile']               = 'vendor/Home/edit_profile';
 $route['vendor/dashboard']                  = 'vendor/Home/dashboard';
 $route['vendor/register']                   = 'vendor/Login/register';
 $route['vendor/product-list']               = 'vendor/Home/product_list';
@@ -178,6 +210,20 @@ $route['vendor/advertisement-detail/(:any)']= 'vendor/Home/advertisement_detail'
 $route['vendor/edit-advertisement/(:any)']  = 'vendor/Home/edit_advertisement';
 $route['vendor/forgot-password']            = 'vendor/Login/forgot_password';
 $route['vendor/reset-password/(:any)']      = 'vendor/Login/reset_password';
+
+$route['vendor/edit-service/(:any)']        = 'vendor/Home/edit_service';
+$route['vendor/service-detail/(:any)']      = 'vendor/Home/service_detail';
+$route['vendor/add-service']                = 'vendor/Home/add_service';
+$route['vendor/service-list']               = 'vendor/Home/service_list';
+$route['vendor/order-list']                 = 'vendor/Home/order_list';
+$route['vendor/order-detail/(:any)']        = 'vendor/Home/order_detail';
+
+$route['vendor/booking-list']               = 'vendor/Home/booking_list';
+$route['vendor/booking-detail/(:any)']      = 'vendor/Home/booking_detail';
+$route['vendor/change-password']            = 'vendor/Home/change_password';
+$route['vendor/about-us']                   = 'vendor/Home/about_us';
+$route['vendor/terms-condition']            = 'vendor/Home/terms_condition';
+$route['vendor/privacy-policy']             = 'vendor/Home/privacy_policy';
 
 $route['vendor/logout']                     = 'vendor/login/logout';
 //---------------------------------Vendor ----------------------------------------------//

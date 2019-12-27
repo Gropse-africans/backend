@@ -16,22 +16,26 @@
                 $msg                = $checkRequired['field'].' field is required.';
                 $data               = new stdClass();
             }else{
-                $check              = $model->addToCart($_REQUEST); 
-                if($check['status']){
-                $error                  = false;
-                $code                   = $check['code'];
-                $msg                    = $check['message'];
-                $data                   = new stdClass();
-            }else{
-                $error                  = false;
-                $code                   = $check['code'];
-                $msg                    = $check['message'];
-                $data                   = new stdClass();
-            }
-//                $error              = false;
-//                $code               = 200;
-//                $msg                = 'Category data';
-//                $data               = $data;
+                $productData        = $model->getSingleDataRow('products','product_id="'.$_REQUEST['product_id'].'" and status="1"');
+                if($productData){
+                    $check              = $model->addToCart($_REQUEST); 
+                    if($check['status']){
+                        $error                  = false;
+                        $code                   = $check['code'];
+                        $msg                    = $check['message'];
+                        $data                   = new stdClass();
+                    }else{
+                        $error                  = true;
+                        $code                   = $check['code'];
+                        $msg                    = $check['message'];
+                        $data                   = new stdClass();
+                    }
+                }else{
+                    $error                  = true;
+                    $code                   = 207;
+                    $msg                    = "Product not found.";
+                    $data                   = new stdClass();
+                }
             }
     }else{
         $error                  = true;

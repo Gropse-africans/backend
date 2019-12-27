@@ -115,6 +115,10 @@ class UserApi extends MX_Controller {
         $this->load->view('UserView/get_service_detail');
     }
     
+    public function getSimilarServices() {
+        $this->load->view('UserView/get_similar_services');
+    }
+    
     public function getServiceReviews() {
         $this->load->view('UserView/get_service_reviews');
     }
@@ -145,6 +149,26 @@ class UserApi extends MX_Controller {
     
     public function bookingDetail() {
         $this->load->view('UserView/booking_detail');
+    }
+    
+    public function filterVendor() {
+        $this->load->view('UserView/filter_vendor');
+    }
+    
+    public function submitContactUs() {
+        $this->load->view('UserView/submit_contact_us');
+    }
+    
+    public function getContactSubject() {
+        $this->load->view('UserView/get_contact_subject');
+    }
+    
+    
+    public function sendMessage() {
+        $this->load->view('UserView/send_message');
+    }
+    public function getMessageDetail() {
+        $this->load->view('UserView/get_message_detail');
     }
 
 

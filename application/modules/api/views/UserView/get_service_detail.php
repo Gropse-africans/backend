@@ -30,8 +30,8 @@
                 }else{
                     $error              = true;
                     $code               = 201;
-                    $msg                = 'Npo data found';
-                    $data               = $data;
+                    $msg                = 'No data found';
+                    $data               = new stdClass();
                 }
             }
     }else{

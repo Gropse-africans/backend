@@ -31,7 +31,7 @@
 
                                         <i class="fa fa-home"></i>
 
-                                        <a class="parent-item" href="<?php echo base_url('admin/dashboard');?>">Home</a>
+                                        <a class="parent-item" href="<?php echo base_url('admin/dashboard'); ?>">Home</a>
 
                                         <i class="fa fa-angle-right"></i>
 
@@ -81,8 +81,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       <?php $count = 1;
-                                       if($users){
+                                        <?php
+                                        $count = 1;
+                                        if ($users) {
                                             foreach ($users as $user):
                                                 ?>
                                                 <tr>
@@ -91,16 +92,19 @@
                                                     <td><?= $user['email'] ?></td>
                                                     <td><?= $user['mobile'] ?></td>
                                                     <td>
-                                                        <div class="mytoggle">
-                                                            <label class="switch">
-                                                                <input type="checkbox" <?= $user['status'] == '1' ? 'checked' : '' ?> onchange="checkStatus(this,<?= $user['id'] ?>)"> <span class="slider round"></span> </label>
-                                                        </div></td>
+                                                            <div class="mytoggle">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" <?= $user['status'] == '1' ? 'checked' : '' ?> onchange="checkStatus(this,<?= $user['id'] ?>)"> <span class="slider round"></span> </label>
+                                                            </div>
+                                                        
+                                                    </td>
                                                     <td>
-                                                        <a href="<?php echo site_url('admin/vendor-detail/'.$user['id']);?>"><span class="label action-button"><i class="fa fa-eye"></i></span></a></td>
+                                                        <a href="<?php echo site_url('admin/vendor-detail/' . $user['id']); ?>"><span class="label action-button"><i class="fa fa-eye"></i></span></a></td>
                                                 </tr>
-                                                <?php $count++;
+                                                <?php
+                                                $count++;
                                             endforeach;
-                                       }
+                                        }
                                         ?>
                                     </tbody>
 
@@ -122,34 +126,34 @@
 
 </div>
 <script>
-        function checkStatus(obj, id) {
-            var checked = $(obj).is(':checked');
-            if (checked == true) {
-                var status = 1;
-            } else {
-                var status = 2;
-            }
-            if (id) {
-                $.ajax({
-                    url: "<?= base_url(); ?>admin/Admin/ajax",
-                    type: 'post',
-                    data: 'method=changeStatus&id=' + id + '&action=' + status + '&type=2',
-                    success: function (data) {
-                        var dt = $.trim(data);
-                        var jsonData = $.parseJSON(dt);
-                        if (jsonData['error_code'] == "200") {
-                            location.reload();
-                        } else {
-                            alert(jsonData['message']);
-                        }
-                    }
-                });
-            } else {
-                alert("Something Wrong");
-            }
+    function checkStatus(obj, id) {
+        var checked = $(obj).is(':checked');
+        if (checked == true) {
+            var status = 1;
+        } else {
+            var status = 2;
         }
-        $(document).ready(function () {
-            $('#example1').DataTable();
-        });
-    </script>
-      
+        if (id) {
+            $.ajax({
+                url: "<?= base_url(); ?>admin/Admin/ajax",
+                type: 'post',
+                data: 'method=changeStatus&id=' + id + '&action=' + status + '&type=2',
+                success: function (data) {
+                    var dt = $.trim(data);
+                    var jsonData = $.parseJSON(dt);
+                    if (jsonData['error_code'] == "200") {
+                        location.reload();
+                    } else {
+                        alert(jsonData['message']);
+                    }
+                }
+            });
+        } else {
+            alert("Something Wrong");
+        }
+    }
+    $(document).ready(function () {
+        $('#example1').DataTable();
+    });
+</script>
+

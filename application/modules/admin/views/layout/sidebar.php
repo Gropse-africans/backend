@@ -1,228 +1,261 @@
 
 
-    <div class="container_full">
+<div class="container_full">
 
-      <div class="side_bar scroll_auto ">
+    <div class="side_bar scroll_auto ">
 
         <div class="user-panel">
 
-          <div class="user_image">
+            <div class="user_image">
 
-            <img src="<?php echo base_url();?>assets/admin/images/admin/about-1.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url(); ?>assets/vendor/common/images/user/user.jpg" class="img-circle" alt="User Image">
 
-          </div>
+            </div>
 
-          <div class="info">
+            <div class="info">
 
-            <p>
+                <p>
 
-              Welcome Admin
+                    Welcome Admin
 
-            </p>
+                </p>
 
-            <a href="<?php echo base_url('admin/dashboard');?>">
-
-          </div>
+            </div>
 
         </div>
 
         <ul id="dc_accordion" class="sidebar-menu tree">
 
-          <li>
+            <li>
 
-            <a href="<?php echo base_url('admin/dashboard');?>">
+                <a href="<?php echo base_url('admin/dashboard'); ?>">
 
-              <i class="fa fa-home"></i>
+                    <i class="fa fa-home"></i>
 
-              <span>Dashboard</span>
+                    <span>Dashboard</span>
 
-            </a>
+                </a>
 
-          </li>
-          <li class="menu_sub">
+            </li>
+            <li class="menu_sub">
 
-            <a href="#">
+                <a href="#">
 
-              <i class="fa fa-user"></i>
+                    <i class="fa fa-user"></i>
 
-              <span>User Management</span>
+                    <span>User Management</span>
 
-              <span class="arrow"></span>
+                    <span class="arrow"></span>
 
-            </a>
+                </a>
 
-            <ul class="down_menu">
+                <ul class="down_menu">
 
-              <li>
+                    <li>
 
-                <a href="<?php echo base_url('admin/user-list');?>">User List</a>
+                        <a href="<?php echo base_url('admin/user-list'); ?>">User List</a>
 
-              </li>
+                    </li>
 
-            </ul>
+                </ul>
 
-          </li>
-          <li class="menu_sub">
+            </li>
+            <li class="menu_sub">
 
-            <a href="#">
+                <a href="#">
 
-              <i class="fa fa-users"></i>
+                    <i class="fa fa-users"></i>
 
-              <span>Vendor Management</span>
+                    <span>Vendor Management</span>
 
-              <span class="arrow"></span>
+                    <span class="arrow"></span>
 
-            </a>
+                </a>
 
-            <ul class="down_menu">
+                <ul class="down_menu">
 
-              <li>
+                    <li>
 
-                <a href="<?php echo base_url('admin/vendor-list');?>">Vendor List</a>
+                        <a href="<?php echo base_url('admin/vendor-list'); ?>">Vendor List</a>
 
-              </li>
+                    </li>
 
-            </ul>
+                </ul>
 
-          </li>
-<!--          <li class="menu_sub">
+            </li>
+            <li class="menu_sub">
 
-            <a href="#">
+                <a href="#">
 
-              <i class="fa fa-first-order"></i>
+                    <i class="fa fa-cubes"></i>
 
-              <span>Order Management</span>
+                    <span>Order Management</span>
 
-              <span class="arrow"></span>
+                    <span class="arrow"></span>
 
-            </a>
+                </a>
 
-            <ul class="down_menu">
+                <ul class="down_menu">
 
-              <li>
+                    <li>
 
-                <a href="<?php echo base_url('order-list');?>">Order List</a>
+                        <a href="<?php echo base_url('admin/order-list'); ?>">Order List</a>
 
-              </li>
+                    </li>
 
-            </ul>
+                </ul>
 
-          </li>-->
+            </li>
+            <li class="menu_sub">
 
-          <li class="menu_sub">
+                <a href="#">
 
-            <a href="#">
+                    <i class="fa fa-first-order"></i>
 
-              <i class="fa fa-shopping-cart"></i>
+                    <span>Booking Management</span>
 
-              <span>Product Management</span>
+                    <span class="arrow"></span>
 
-              <span class="arrow"></span>
+                </a>
 
-            </a>
+                <ul class="down_menu">
 
-            <ul class="down_menu">
+                    <li>
 
-              <li>
+                        <a href="<?php echo base_url('admin/booking-list'); ?>">Booking List</a>
 
-                <a href="<?php echo base_url('admin/verify-product-list');?>">Verify Product List</a>
-                <a href="<?php echo base_url('admin/unverify-product-list');?>">Un-Verify Product List</a>
-                <a href="<?php echo base_url('admin/add-product');?>">Add Product</a>
+                    </li>
 
-              </li>
+                </ul>
 
-            </ul>
+            </li>
 
-          </li> 
-         <li class="menu_sub">
+            <li class="menu_sub">
 
-            <a href="#">
+                <a href="#">
 
-              <i class="fa fa-user-secret"></i>
+                    <i class="fa fa-shopping-cart"></i>
 
-              <span>Advertisment Management</span>
+                    <span>Product Management</span>
 
-              <span class="arrow"></span>
+                    <span class="arrow"></span>
 
-            </a>
+                </a>
 
-            <ul class="down_menu">
+                <ul class="down_menu">
 
-              <li>
+                    <li>
 
-                <a href="<?php echo base_url('admin/advertisment');?>">Advertisment List</a> 
+                        <a href="<?php echo base_url('admin/verify-product-list'); ?>">Verify Product List</a>
+                        <a href="<?php echo base_url('admin/unverify-product-list'); ?>">Un-Verify Product List</a>
+                        <a href="<?php echo base_url('admin/add-product'); ?>">Add Product</a>
 
-              </li>
+                    </li>
 
-            </ul>
+                </ul>
 
-          </li> 
- <!--          <li class="menu_sub">
+            </li> 
+            <li class="menu_sub">
 
-            <a href="#">
+                <a href="#">
 
-              <i class="fa fa-handshake-o"></i>
+                    <i class="fa fa-handshake-o"></i>
 
-              <span>Service Management</span>
+                    <span>Service Management</span>
 
-              <span class="arrow"></span>
+                    <span class="arrow"></span>
 
-            </a>
+                </a>
 
-            <ul class="down_menu">
+                <ul class="down_menu">
 
-              <li>
+                    <li>
 
-                <a href="<?php echo base_url('service-list');?>">Service List</a>
-                <a href="<?php echo base_url('add-service');?>">Add Service</a>
+                        <a href="<?php echo base_url('admin/service-list'); ?>">Service List</a>
+                        <a href="<?php echo base_url('admin/add-service'); ?>">Add Service</a>
 
-              </li>
+                    </li>
 
-            </ul>
+                </ul>
 
-          </li>-->
-                    <li class="menu_sub">
+            </li>
+            <li class="menu_sub">
 
-            <a href="#">
+                <a href="#">
 
-              <i class="fa fa-cog"></i>
+                    <i class="fa fa-user-secret"></i>
 
-              <span>Setting</span>
+                    <span>Advertisement Management</span>
 
-              <span class="arrow"></span> 
+                    <span class="arrow"></span>
 
-            </a>
+                </a>
 
-            <ul class="down_menu">
+                <ul class="down_menu">
 
-              <li>
-                <!--<a href="<?php echo base_url('business-cat');?>">Business Category</a>-->
-                <a href="<?php echo base_url('admin/category');?>">Category</a>
-                <a href="<?php echo base_url('admin/sub-category');?>">Sub-Category</a> 
-                <a href="<?php echo base_url('admin/brand');?>">Brand</a> 
-                <a href="<?php echo base_url('admin/subscription-plan');?>">subscription Plan</a> 
+                    <li>
 
-              </li>
+                        <a href="<?php echo base_url('admin/advertisment'); ?>">Advertisement List</a> 
 
-            </ul>
+                    </li>
 
-          </li>
+                </ul>
 
-<!--          <li>
+            </li> 
+            <li class="menu_sub">
+                <a href="#">
+                    <i class="fa fa-envelope-open-o"></i>
+                    <span>Help & Support</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="down_menu">
+                    <li>
+                        <a href="<?php echo base_url('admin/help-Support'); ?>">Help & Support</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu_sub">
 
-            <a href="<?php echo base_url('notification');?>">
+                <a href="#">
 
-              <i class="fa fa-bell"></i>
+                    <i class="fa fa-cog"></i>
 
-              <span>Notification</span>
+                    <span>Setting</span>
 
-            </a>
+                    <span class="arrow"></span> 
 
-          </li>-->
+                </a>
+
+                <ul class="down_menu">
+
+                    <li>
+                        <a href="<?php echo base_url('admin/attribute-list'); ?>">Attribute List</a>
+                        <a href="<?php echo base_url('admin/product-category'); ?>">Product Category</a>
+                        <a href="<?php echo base_url('admin/product-sub-category'); ?>">Product Sub-Category</a> 
+                        <a href="<?php echo base_url('admin/service-category'); ?>">Service Category</a>
+                        <a href="<?php echo base_url('admin/brand'); ?>">Brand</a> 
+                        <a href="<?php echo base_url('admin/subscription-plan'); ?>">Subscription Plan</a> 
+                        <a href="<?php echo base_url('admin/price-management'); ?>">Price Management</a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+            <!--          <li>
+            
+                        <a href="<?php echo base_url('notification'); ?>">
+            
+                          <i class="fa fa-bell"></i>
+            
+                          <span>Notification</span>
+            
+                        </a>
+            
+                      </li>-->
 
 
         </ul>
 
-      </div>
+    </div>
 
-      

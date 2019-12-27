@@ -636,12 +636,12 @@ class User_model extends CI_Model {
                 if($product_cart){
                     $value['cart_quentity']=$product_cart['quantity'];
                 }
-                $wishlist=$this->getSingleDataRow('wishlist','user_id="'.$data['user_id'].'" and product_id="'.$value['product_id'].'"');
+                $wishlist=$this->getSingleDataRow('wishlist','user_id="'.$data['user_id'].'" and product_id="'.$value['product_id'].'" and type="1"');
                 if($wishlist){
                      $value['is_fav']='1';
                 }
                 $productImages=array();
-                $value['rating']="4";
+                //$value['rating']="4";
                 if($value['images']){
                     $images=$this->splitTrimData($value['images']);
                     $imagesExp=explode(',',$images);
@@ -664,79 +664,79 @@ class User_model extends CI_Model {
         function getProductDataRow($value,$data){
             $productArr=array();
             
-            $value['cart_quentity']='0';
-            $value['is_fav']="0";
-            $category=$this->getSingleDataRow('category','id="'.$value['category_id'].'" ');
-            $value['category_name']=$category['name'];
-            $subcategory=$this->getSingleDataRow('category','id="'.$value['sub_category_id'].'" ');
-            $value['subcategory_name']=$subcategory['name'];
-            $brand=$this->getSingleDataRow('brand','id="'.$value['brand_id'].'" ');
-            $value['brand_name']=$brand['name'];
-
-            if($value['discount']){
-                $value['discount_price']=strval($value['price']-(($value['price']*$value['discount'])/100));
-            }else{
-                $value['discount_price']=strval($value['price']);
-            }
-
-            $product_cart=$this->getSingleDataRow('cart','user_id="'.$data['user_id'].'" and product_id="'.$value['product_id'].'"');
-            if($product_cart){
-                $value['cart_quentity']=$product_cart['quantity'];
-            }
-            $wishlist=$this->getSingleDataRow('wishlist','user_id="'.$data['user_id'].'" and product_id="'.$value['product_id'].'"');
-            if($wishlist){
-                 $value['is_fav']='1';
-            }
-            $productImages=array();
-            if($value['images']){
-                $images=$this->splitTrimData($value['images']);
-                $imagesExp=explode(',',$images);
-                if($imagesExp){
-                    foreach ($imagesExp as $imgVal) {
-                        $files=$this->getSingleDataRow('files','id="'.$imgVal.'"');
-                        if($files){
-                            $files['image']=$files['file_path'].$files['file_name'];
-                            array_push($productImages,$files);
+                $value['cart_quentity']='0';
+                $value['is_fav']="0";
+                $category=$this->getSingleDataRow('category','id="'.$value['category_id'].'" ');
+                $value['category_name']=$category['name'];
+                $subcategory=$this->getSingleDataRow('category','id="'.$value['sub_category_id'].'" ');
+                $value['subcategory_name']=$subcategory['name'];
+                $brand=$this->getSingleDataRow('brand','id="'.$value['brand_id'].'" ');
+                $value['brand_name']=$brand['name'];
+                
+                if($value['discount']){
+                    $value['discount_price']=strval($value['price']-(($value['price']*$value['discount'])/100));
+                }else{
+                    $value['discount_price']=strval($value['price']);
+                }
+                
+                $product_cart=$this->getSingleDataRow('cart','user_id="'.$data['user_id'].'" and product_id="'.$value['product_id'].'"');
+                if($product_cart){
+                    $value['cart_quentity']=$product_cart['quantity'];
+                }
+                $wishlist=$this->getSingleDataRow('wishlist','user_id="'.$data['user_id'].'" and product_id="'.$value['product_id'].'" and type="1"');
+                if($wishlist){
+                     $value['is_fav']='1';
+                }
+                $productImages=array();
+                if($value['images']){
+                    $images=$this->splitTrimData($value['images']);
+                    $imagesExp=explode(',',$images);
+                    if($imagesExp){
+                        foreach ($imagesExp as $imgVal) {
+                            $files=$this->getSingleDataRow('files','id="'.$imgVal.'"');
+                            if($files){
+                                $files['image']=$files['file_path'].$files['file_name'];
+                                array_push($productImages,$files);
+                            }
                         }
                     }
                 }
-            }
-            $value['images']=$productImages;
-
-            $productAttribute=array();
-            $product_attribute=$this->getTableDataArray('product_attribute','product_id="'.$value['product_id'].'"');
-            //print_r($product_attribute);exit;
-            if($product_attribute){
-                foreach($product_attribute as $attr){
-                    $category_attribute=$this->getSingleDataRow('category_attribute','id="'.$attr['attribute_id'].'"');
-                    $category_attribute_value=$this->getSingleDataRow('category_attribute_value','id="'.$attr['attribute_value_id'].'"');
-                    $arr=array('attribute_id'=>$attr['attribute_id'],'attribute'=>$category_attribute['title'],'attribute_value_id'=>$attr['attribute_value_id'],'attribute_value'=>$category_attribute_value['value']);
-                    array_push($productAttribute, $arr);
+                $value['images']=$productImages;
+                
+                $productAttribute=array();
+                $product_attribute=$this->getTableDataArray('product_attribute','product_id="'.$value['product_id'].'"');
+                //print_r($product_attribute);exit;
+                if($product_attribute){
+                    foreach($product_attribute as $attr){
+                        $category_attribute=$this->getSingleDataRow('category_attribute','id="'.$attr['attribute_id'].'"');
+                        $category_attribute_value=$this->getSingleDataRow('category_attribute_value','id="'.$attr['attribute_value_id'].'"');
+                        $arr=array('attribute_id'=>$attr['attribute_id'],'attribute'=>$category_attribute['title'],'attribute_value_id'=>$attr['attribute_value_id'],'attribute_value'=>$category_attribute_value['value']);
+                        array_push($productAttribute, $arr);
+                    }
                 }
-            }
-            //print_r($productAttribute);EXIT;
-            $value['attribute']=$productAttribute;
-
-            $productSpecification=array();
-            $product_specification=$this->getTableDataArray('product_specification','product_id="'.$value['product_id'].'"');
-            //print_r($product_attribute);exit;
-            if($product_specification){
-                foreach($product_specification as $specification){
-                    $category_attribute=$this->getSingleDataRow('category_attribute','id="'.$specification['attribute_id'].'"');
-                    $specification['attribute']=$category_attribute['title'];
-                    array_push($productSpecification, $specification);
+//                print_r($productAttribute);EXIT;
+                $value['attribute']=$productAttribute;
+                
+                $productSpecification=array();
+                $product_specification=$this->getTableDataArray('product_specification','product_id="'.$value['product_id'].'"');
+                //print_r($product_attribute);exit;
+                if($product_specification){
+                    foreach($product_specification as $specification){
+                        $category_attribute=$this->getSingleDataRow('category_attribute','id="'.$specification['attribute_id'].'"');
+                        $specification['attribute']=$category_attribute['title'];
+                        array_push($productSpecification, $specification);
+                    }
                 }
-            }
-
-            $value['specification']=$productSpecification;
-
-            $product_review=$this->getTableDataArray('product_review','product_id="'.$value['product_id'].'"');
-            if($product_review){
-                $value['review_count']=count($product_review);
-            }else{
-                $value['review_count']=0;
-            }
-            //print_r($value);EXIT;
+                
+                $value['specification']=$productSpecification;
+                
+                $product_review=$this->getTableDataArray('product_review','product_id="'.$value['product_id'].'"');
+                if($product_review){
+                    $value['review_count']=count($product_review);
+                }else{
+                    $value['review_count']=0;
+                }
+                //print_r($value);EXIT;
             return $value;
         }
 
@@ -758,7 +758,7 @@ class User_model extends CI_Model {
                     $products=$this->getSingleDataRow('products','product_id="'.$value['product_id'].'" ');
                     if($products){
                         $productImages=array();
-                        $wishlist=$this->getSingleDataRow('wishlist','user_id="'.$data['user_id'].'" and product_id="'.$value['product_id'].'"');
+                        $wishlist=$this->getSingleDataRow('wishlist','user_id="'.$data['user_id'].'" and product_id="'.$value['product_id'].'" and type="1"');
                         if($wishlist){
                             $value['is_fav']="1";
                         }else{
@@ -1159,6 +1159,16 @@ class User_model extends CI_Model {
             $serviceFav=$this->getTableDataArray('wishlist','user_id="'.$data['user_id'].'" and type="2"');
             foreach ($serviceFav as $value) {
                 $service=$this->getSingleDataRow('service','service_id="'.$value['product_id'].'" ');
+                $service_detail=$this->getSingleDataRow('service_detail','service_id="'.$service['service_id'].'" and service_plan_id="1" ');
+                if($service_detail){
+                    $service['price']=$service_detail['price'];
+                    $service['detail_id']=$service_detail['detail_id'];
+                }else{
+                    $service_detail=$this->getSingleDataRow('service_detail','service_id="'.$service['service_id'].'"');
+                    $service['price']=$service_detail['price'];
+                    $service['detail_id']=$service_detail['detail_id'];
+                }
+                
                 //print_r($products);
                 if($service){
                     $productImages=array();
@@ -1176,6 +1186,7 @@ class User_model extends CI_Model {
                             }
                         }
                     $service['images']=$productImages;
+                    $service['wishlist_id']=$value['wishlist_id'];
                     $service['wishlist_id']=$value['wishlist_id'];
                     array_push($serviceFavArr,$service);
                 }
@@ -1252,7 +1263,12 @@ class User_model extends CI_Model {
             $results = $this->db->insert('product_review', $data);
             if($results){
                 $products=$this->getSingleDataRow('products','product_id="'.$data['product_id'].'" ');
-                $rating=($products['rating']+$data['rating'])/2;
+                
+                if($products['rating']>0){
+                    $rating=($products['rating']+$data['rating'])/2;   
+                }else{
+                     $rating=($data['rating']);   
+                }
                 $update = $this->db->query("update af_products set rating = '".$rating."' where product_id= '" . $data['product_id'] . "' ");
                 return true;
             }else{
@@ -1357,6 +1373,64 @@ class User_model extends CI_Model {
            if($getVendors){ 
                foreach($getVendors as $vendor){
                    $vendorServices=array();
+                   $services=$this->getTableDataArray('service','vendor_id="'.$vendor['vendor_id'].'" and category_id="'.$data['category_id'].'" and status="1"');
+                   if($services){
+                       foreach($services as $service){
+                            $productImages=array();
+                            $service_category=$this->getSingleDataRow('service_category','id="'.$service['category_id'].'"');
+                            $service['category_name']=$service_category['name'];
+                            $service_detail=$this->getSingleDataRow('service_detail','service_id="'.$service['service_id'].'" and service_plan_id="1" ');
+                            if($service_detail){
+                                $service['price']=$service_detail['price'];
+                            }else{
+                                $service_detail=$this->getSingleDataRow('service_detail','service_id="'.$service['service_id'].'"');
+                                $service['price']=$service_detail['price'];
+                            }
+                            if($service['images']){
+                                $images=$this->splitTrimData($service['images']);
+                                $imagesExp=explode(',',$images);
+                                if($imagesExp){
+                                    foreach ($imagesExp as $imgVal) {
+                                        $files=$this->getSingleDataRow('files','id="'.$imgVal.'"');
+                                        if($files){
+                                            $files['image']=$files['file_path'].$files['file_name'];
+                                            array_push($productImages,$files);
+                                        }
+                                    }
+                                }
+                            }
+                            $service['images']=$productImages;
+                            array_push($vendorServices,$service);
+                       }
+                   }
+                    $vendor['services']=$vendorServices;
+                    if($vendorServices){
+                        array_push($serviceArr,$vendor);
+                    }
+               }
+           }
+           //print_r($serviceArr);exit;
+           if($serviceArr){
+               return array('service'=>$serviceArr,'filterData'=>['min_price'=>100,'max_price'=>500]);
+           }else{
+               return false;
+           }
+        }
+        
+        function getServiceList_old($data){
+            $serviceArr=array();
+            $where='u.status="1" and service.status="1" and service.category_id="'.$data['category_id'].'"';
+            $getVendors =$this->db->select("service.vendor_id,service.category_id,service.service_id,u.name as vendor_name,u.image as vendor_image")
+                            ->where($where)
+                            //->having('distance>=', 10)
+                            ->join("vendor as u", "service.vendor_id=u.id")
+                            ->limit($data['limit'],$data['start'])
+                            ->group_by('service.vendor_id')
+                            ->get("service")->result_array();
+//                            print_r($services);exit;
+           if($getVendors){ 
+               foreach($getVendors as $vendor){
+                   $vendorServices=array();
                    $services=$this->getTableDataArray('service','vendor_id="'.$vendor['vendor_id'].'"');
                    if($services){
                        foreach($services as $service){
@@ -1441,7 +1515,14 @@ class User_model extends CI_Model {
                             ->join("service_plan as sp", "service_detail.service_plan_id=sp.plan_id")
                             ->get("service_detail")->result_array();
                 $service['plans']=$serviceDetailData;
+                $service['is_fav']=0;
                 
+                $wishlist=$this->getSingleDataRow('wishlist','user_id="'.$data['user_id'].'" and product_id="'.$service['service_id'].'" and type="2"');
+                if($wishlist){
+                    $service['is_fav']="1";
+                }else{
+                    $service['is_fav']="0";
+                }
                 $service_review_count=$this->getTableDataArray('service_review','service_id="'.$data['service_id'].'"');
                 if($service_review_count){
                     $service['review_count']=count($service_review_count);
@@ -1510,6 +1591,47 @@ class User_model extends CI_Model {
             }
         }
         
+        function getSimilarServices($data){
+            $similarServicesArr=array();
+            $where='u.status="1" and service.status="1" and service.category_id="'.$data['category_id'].'"';
+            $similarServices =$this->db->select("service.*,u.name as vendor_name,u.image as vendor_image")
+                        ->where($where)
+                        ->join("vendor as u", "service.vendor_id=u.id")
+                        ->get("service")->result_array();
+            if($similarServices){
+                foreach($similarServices as $serviceRow){
+                    $productImages=array();
+                    $service_category=$this->getSingleDataRow('service_category','id="'.$serviceRow['category_id'].'"');
+                    $serviceRow['category_name']=$service_category['name'];
+                    $service_detail=$this->getSingleDataRow('service_detail','service_id="'.$serviceRow['service_id'].'" and service_plan_id="1" ');
+                    if($service_detail){
+                        $serviceRow['price']=$service_detail['price'];
+                    }else{
+                        $service_detail=$this->getSingleDataRow('service_detail','service_id="'.$serviceRow['service_id'].'"');
+                        $serviceRow['price']=$service_detail['price'];
+                    }
+                    if($serviceRow['images']){
+                        $images=$this->splitTrimData($serviceRow['images']);
+                        $imagesExp=explode(',',$images);
+                        if($imagesExp){
+                            foreach ($imagesExp as $imgVal) {
+                                $files=$this->getSingleDataRow('files','id="'.$imgVal.'"');
+                                if($files){
+                                    $files['image']=$files['file_path'].$files['file_name'];
+                                    array_push($productImages,$files);
+                                }
+                            }
+                        }
+                    }
+                    $serviceRow['images']=$productImages;
+                    array_push($similarServicesArr,$serviceRow);
+               }
+               return array('similarService'=>$similarServicesArr);
+           }else{
+               return false;
+           }
+        }
+        
         function getServiceReviews($data){
         $reviewDescription=array();
         $reviewArr=array();
@@ -1546,7 +1668,11 @@ class User_model extends CI_Model {
         $results = $this->db->insert('service_review', $data);
         if($results){
             $service=$this->getSingleDataRow('service','service_id="'.$data['service_id'].'" ');
-            $rating=($service['rating']+$data['rating'])/2;
+            if($service['rating']>0){
+                $rating=($service['rating']+$data['rating'])/2;   
+            }else{
+                 $rating=($data['rating']);   
+            }
             $update = $this->db->query("update af_service set rating = '".$rating."' where service_id= '" . $data['service_id'] . "' ");
             return true;
         }else{
@@ -1555,8 +1681,9 @@ class User_model extends CI_Model {
     }
     
     function serviceBooking($data){
-        $data['payment_type']=1;
+        $data['payment_type']=2;
         $data['payment_status']=1;
+        $data['status']=1;
         $data['created_at']=date('Y-m-d H:i:s');
         $results = $this->db->insert('service_booking', $data);
         if($results){
@@ -1579,9 +1706,11 @@ class User_model extends CI_Model {
                 'latitude'          => $data['latitude'],
                 'longitude'         => $data['longitude'],
                 'landmark'          => $data['landmark'],
+                'user_name'         => $data['user_name'],
+                'address'           => $data['address'],
                 'payment_type'      => 2,
                 'payment_status'    => 0,
-                'status'            => 0,
+                'status'            => 1,
                 'created_at'        => date('Y-m-d H:i:s'),
             );
             $insetOrder=$this->insertDataTable('orders',$order);
@@ -1719,11 +1848,205 @@ class User_model extends CI_Model {
                             ->join("service_plan as sp", "service_detail.service_plan_id=sp.plan_id")
                             ->get("service_detail")->row_array();
             $orders['plans']=$serviceDetailData['price'];
+            $orders['plans_name']=$serviceDetailData['plan_name'];
             return $orders;
         }else{
             return false;
         }
     }
+    
+    function filterVendor($data){
+        $serviceArr=array();
+        $where='u.status="1" and service.status="1" and service.category_id="'.$data['category_id'].'"';
+        if(isset($data['rating'])){
+            if($data['rating']){
+                $where=$where.' and service.rating between 1 and "'.$data['rating'].'"';
+            }
+        }
+        $getVendors =$this->db->select("service.service_id,service.vendor_id,service.category_id,service.service_id,u.name as vendor_name,u.image as vendor_image")
+                        ->where($where)
+                        //->having('distance>=', 10)
+                        ->join("vendor as u", "service.vendor_id=u.id")
+                        ->group_by('service.vendor_id')
+                        ->get("service")->result_array();
+                           //print_r($getVendors);exit;
+       if($getVendors){ 
+           foreach($getVendors as $vendor){
+               $vendorServices=array();
+               $whereVendor='vendor_id="'.$vendor['vendor_id'].'" and category_id="'.$data['category_id'].'" and status="1"';
+               if(isset($data['rating'])){
+                    if($data['rating']){
+                        $whereVendor=$whereVendor.' and rating between 1 and "'.$data['rating'].'"';
+                    }
+                }
+               $services=$this->getTableDataArray('service',$whereVendor);
+               //print_r($services);exit;
+               if($services){
+                   foreach($services as $service){
+                        $checkPriceFilter=true;
+                        if(isset($data['min_price']) and isset($data['max_price'])){
+                            if($data['min_price'] and $data['max_price']){
+                                $wherePlan='service_id="'.$service['service_id'].'" and price between "'.$data['min_price'].'" and "'.$data['max_price'].'"';
+                                $serviceDetailData =$this->db->select("service_detail.*,sp.name as plan_name")
+                                                        ->where($wherePlan)
+                                                        ->join("service_plan as sp", "service_detail.service_plan_id=sp.plan_id")
+                                                        ->get("service_detail")->result_array();
+                                if($serviceDetailData){
+                                    $checkPriceFilter=true;
+                                }else{
+                                    $checkPriceFilter=false;
+                                }
+                            }
+                        }
+                        
+                        if($checkPriceFilter){
+                            $productImages=array();
+                            $service_category=$this->getSingleDataRow('service_category','id="'.$data['category_id'].'"');
+                            $service['category_name']=$service_category['name'];
+                            $service_detail=$this->getSingleDataRow('service_detail','service_id="'.$service['service_id'].'" and service_plan_id="1" ');
+                            if($service_detail){
+                                $service['price']=$service_detail['price'];
+                            }else{
+                                $service_detail=$this->getSingleDataRow('service_detail','service_id="'.$service['service_id'].'"');
+                                $service['price']=$service_detail['price'];
+                            }
+                            if($service['images']){
+                                $images=$this->splitTrimData($service['images']);
+                                $imagesExp=explode(',',$images);
+                                if($imagesExp){
+                                    foreach ($imagesExp as $imgVal) {
+                                        $files=$this->getSingleDataRow('files','id="'.$imgVal.'"');
+                                        if($files){
+                                            $files['image']=$files['file_path'].$files['file_name'];
+                                            array_push($productImages,$files);
+                                        }
+                                    }
+                                }
+                            }
+                            $service['images']=$productImages;
+                            array_push($vendorServices,$service);
+                        }
+                   }
+               }
+               if($vendorServices){
+                    $vendor['services']=$vendorServices;
+                    array_push($serviceArr,$vendor);
+               }
+           }
+       }
+       //print_r($serviceArr);exit;
+       if($serviceArr){
+           return array('service'=>$serviceArr);
+       }else{
+           return false;
+       }
+    }
+    
+    function submitContactUs($data){
+        $contact_us=$this->insertDataTable('contact_us',$data);
+        if($contact_us){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    function getContactSubject($data){
+        $contact_subject=$this->getTableDataArrayOrderBy('contact_subject','status="1"','id');
+        return array('contact_subject'=>$contact_subject);
+    }
+
+
+
+ ////////////////////////////////////////////////////CHAT///////////////////////////////////
+    function sendMessage($data) {
+        $getConversation = $this->db->query("SELECT c_id  FROM af_conversation  WHERE  (user_id='" . $data['user_id'] . "' AND vendor_id='" . $data['vendor_id'] . "')")->row_array();
+        //print_r($getConversation);exit;
+        $sender_id=$data['sender_id'];unset($data['sender_id']);
+        $user_type=$data['user_type'];unset($data['user_type']);
+        if ($getConversation) {
+            $updated_at = array('updated_at' => strtotime(date('Y-m-d H:i:s')));
+            $this->db->where('c_id', $getConversation['c_id']);
+            $this->db->update('conversation', $updated_at);
+            $reply = array('sender_id' => $sender_id,'user_type'=>$user_type, 'reply' => $data['message'], 'created_at' => strtotime(date('Y-m-d H:i:s')), 'c_id_fk' => $getConversation['c_id']);
+            $conversation_reply = $this->db->insert('conversation_reply', $reply);
+            $reply_insert_id = $this->db->insert_id();
+        } else {
+            $doc = array('user_id' => $data['user_id'], 'vendor_id' => $data['vendor_id'], 'created_at' => strtotime(date('Y-m-d H:i:s')), 'updated_at' => strtotime(date('Y-m-d H:i:s')));
+            $conversation = $this->db->insert('conversation', $doc);
+            $insert_id = $this->db->insert_id();
+            $reply = array('sender_id' => $sender_id,'user_type'=>$user_type, 'reply' => $data['message'], 'created_at' => strtotime(date('Y-m-d H:i:s')), 'c_id_fk' => $insert_id);
+            $conversation_reply = $this->db->insert('conversation_reply', $reply);
+            $reply_insert_id = $this->db->insert_id();
+        }
+        if ($conversation_reply) {
+//            $getConversationList = $this->db->query("SELECT R.cr_id,R.created_at,R.reply as message,R.sender_id,R.user_type,R.c_id_fk  as c_id,U.id as user_id,U.name,U.email,U.image FROM af_users U, af_conversation_reply R WHERE R.sender_id=U.id and R.cr_id='" . $reply_insert_id . "' ORDER BY R.cr_id ASC LIMIT 20")->row_array();
+//            if ($getConversationList) {
+//                $getConversationList['is_sender'] = '1';
+//            }
+//            $user_auth = $this->getRowData(['user_id' => $data['user_id2']], 'user_auth');
+//            $user = $this->getRowData(['id' => $data['user_id2']], 'user');
+//            $sender = $this->getRowData(['id' => $data['user_id1']], 'user');
+//
+//            // print_r($pushData);exit;
+//            $messageData = $data['message'];
+//            $pushData['title'] = "New message from " . $sender['full_name'];
+//            $pushData['body'] = $messageData;
+//            $pushData['type'] = 'user_chat';
+//            $pushData['cr_id'] = $getConversationList['cr_id'];
+//            $pushData['created_at'] = $getConversationList['created_at'];
+//            $pushData['user_id_fk'] = $getConversationList['user_id_fk'];
+//            $pushData['user_id'] = $getConversationList['user_id'];
+//            $pushData['full_name'] = $getConversationList['full_name'];
+//            $pushData['email'] = $getConversationList['email'];
+//            $pushData['profile_image'] = $getConversationList['profile_image'];
+//            $pushData['c_id'] = $getConversationList['c_id'];
+//            $pushData['message'] = $data['message'];
+//            $pushData['is_sender'] = '0';
+//            $message = json_encode($pushData);
+//            if ($user_auth['device_type'] == 2) {
+//                $notify = $this->sendIosFcmPush($user_auth['device_token'], $pushData);
+//            } else {
+//                $notify = $this->sendAndroidPush($user_auth['device_token'], $message);
+//            }
+
+            $getConversationList = $this->db->query("SELECT R.cr_id,R.created_at,R.reply as message,R.sender_id,R.user_type,R.c_id_fk  as c_id FROM af_conversation_reply R WHERE  R.cr_id='" . $reply_insert_id . "' ORDER BY R.cr_id ASC LIMIT 20")->row_array();
+            return array('last_message'=>$getConversationList);
+        } else {
+            return false;
+        }
+    }
+
+    function getMessageDetail($data) {
+        $user_id = $data['user_id'];
+        $getConversationListArr = array();
+//        $getConversationList = $this->db->query("SELECT R.cr_id,R.created_at,R.reply as message,R.user_id_fk,U.id as user_id,U.full_name,U.email,U.profile_image FROM user U, conversation_reply R WHERE R.user_id_fk=U.id and (NOT FIND_IN_SET('$user_id', delete_chat_user)) and R.c_id_fk='" . $data['c_id'] . "' ORDER BY R.cr_id DESC LIMIT " . $data['start'] . ",50")->result_array();
+        ///print_r($getConversationList);exit;
+        $getConversation = $this->db->query("SELECT c_id  FROM af_conversation  WHERE  (user_id='" . $data['user_id'] . "' AND vendor_id='" . $data['vendor_id'] . "')")->row_array();
+        if($getConversation){
+            $this->db->where('c_id_fk',$getConversation['c_id']);
+            $this->db->order_by('cr_id','DESC');
+            $this->db->limit(50,$data['start']);
+            $getConversationList = $this->db->get('conversation_reply')->result_array();
+            if($getConversationList){
+                foreach($getConversationList as $value){
+                    $value['message']=$value['reply'];unset($value['reply']);
+                    if ($value['sender_id'] == $data['user_id']) {
+                         $value['is_sender'] = '1';
+                    }else {
+                        $value['is_sender'] = '0';
+                    }
+                    array_push($getConversationListArr, $value);
+                }
+                return array('message_data'=>$getConversationListArr);
+            }else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+ ////////////////////////////////////////////////////CHAT/////////////////////////////////// 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////API MODULES////////////////////////////////////////////////////////////////////////////////

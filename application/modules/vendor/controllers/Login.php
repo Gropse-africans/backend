@@ -16,8 +16,6 @@ class Login extends CI_Controller {
     }
 
     public function index() {
-
-
         $this->form_validation->set_error_delimiters('<p style="color:#a94442;">', '</p>');
         $this->form_validation->set_rules('email', 'Email address', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -57,6 +55,7 @@ class Login extends CI_Controller {
     }
 
     public function register() {
+        date_default_timezone_set('Asia/Kolkata');
         $this->form_validation->set_error_delimiters('<p style="color:red;">', '</p>');
         $this->form_validation->set_rules('name', 'Name', 'required');
         $this->form_validation->set_rules('email', 'Email address', 'required|valid_email|is_unique[vendor.email]');
@@ -67,8 +66,7 @@ class Login extends CI_Controller {
         //$this->form_validation->set_rules('vendor_image', 'Image', 'required');
         if ($this->form_validation->run() == False) {
 
-            $data['view_link'] = 'register';
-            $this->load->view('layout/template',$data);
+            $this->load->view('register');
         } else {
             // print_r($_FILES);exit;
             $path = "uploads/vendor/";
@@ -85,15 +83,15 @@ class Login extends CI_Controller {
                 'name' => $this->input->post('name'),
                 'email' => trim($this->input->post('email'), ' '),
                 'password' => md5(trim($this->input->post('password'), ' ')),
-                'mobile' => $this->input->post('mobile'),
                 'image' => $personal_photo,
+                'shop_name' => $this->input->post('shop_name'),
                 'address' => $this->input->post('address'),
                 'lat' => $this->input->post('latitude'),
                 'lng' => $this->input->post('longitude'),
                 'status' => '0',
-                'created_at' => date('Y-m-d H:i:s'),
+                'created_at' => strtotime(date('Y-m-d H:i:s')),
             ];
-            // print_r($insertArr);exit;
+             //print_r($insertArr);exit;
             $returnData = $this->Vendor_model->addData('vendor', $insertArr);
             if ($returnData) {
                 // $this->send_mail($insertArr['email'], 'African Super Market Registration Successful', 'Please Verify Your Account for the Registration.', ['otp' => $insertArr['otp']]);

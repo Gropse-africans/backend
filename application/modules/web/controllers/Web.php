@@ -12,6 +12,7 @@ class Web extends MX_Controller {
     }
 
     public function index() {
+        header("Cache-Control: no-cache, must-revalidate");
         $customer = $this->session->userdata('customer_logged_in');
         if ($customer) {
             $strPost['user_id'] = $customer['user_id'];
@@ -279,9 +280,9 @@ class Web extends MX_Controller {
 
         $returnData = $this->Api_model->apiCallHeader($path, $headerArr, $strPost);
         $returnArr = json_decode($returnData, true);
-//        echo "<pre>";
-//        print_r($returnArr);
-//        die;
+        // echo "<pre>";
+        // print_r($returnArr);
+        // die;
         $data['header'] = $this->get_header();
         if ($returnArr['error_code'] == 200) {
             $data['products'] = $returnArr['data']['productDetail'];
@@ -334,6 +335,9 @@ class Web extends MX_Controller {
             $data['ads_list'] = ['ads' => array()];
             $data['message'] = $returnArr['message'];
         }
+//                echo "<pre>";
+//        print_r($data);
+//        die;
 //        echo "<pre>";print_r($data['header']['0']['sub_category']);die;
         $data['view_link'] = 'advertisement_list';
         $this->load->view('layout/template', $data);
@@ -672,6 +676,83 @@ class Web extends MX_Controller {
         $data['header'] = $this->get_header();
 //        echo "<pre>";print_r($data['header']['0']['sub_category']);die;
         $data['view_link'] = 'delivery_information';
+        $this->load->view('layout/template', $data);
+    }
+    
+    public function disclaimer() {
+        if ($this->session->userdata('customer_logged_in')) {
+            $userdata = $this->session->userdata('customer_logged_in');
+            $strPost['user_id'] = $userdata['user_id'];
+            $headerArr = [
+                'lang' => 'en',
+                'device_id' => $userdata['device_id'],
+                'security_token' => $userdata['security_token']
+            ];
+        } {
+            $strPost['user_id'] = '00';
+            $headerArr = ['lang' => 'en', 'device_id' => '', 'security_token' => ''];
+        }
+//        $data['myCart'] = $this->myCart();
+        $data['header'] = $this->get_header();
+//        echo "<pre>";print_r($data['header']['0']['sub_category']);die;
+        $data['view_link'] = 'disclaimer';
+        $this->load->view('layout/template', $data);
+    }
+     public function company_profile() {
+        if ($this->session->userdata('customer_logged_in')) {
+            $userdata = $this->session->userdata('customer_logged_in');
+            $strPost['user_id'] = $userdata['user_id'];
+            $headerArr = [
+                'lang' => 'en',
+                'device_id' => $userdata['device_id'],
+                'security_token' => $userdata['security_token']
+            ];
+        } {
+            $strPost['user_id'] = '00';
+            $headerArr = ['lang' => 'en', 'device_id' => '', 'security_token' => ''];
+        }
+//        $data['myCart'] = $this->myCart();
+        $data['header'] = $this->get_header();
+//        echo "<pre>";print_r($data['header']['0']['sub_category']);die;
+        $data['view_link'] = 'company_profile';
+        $this->load->view('layout/template', $data);
+    }
+     public function cookie_policy() {
+        if ($this->session->userdata('customer_logged_in')) {
+            $userdata = $this->session->userdata('customer_logged_in');
+            $strPost['user_id'] = $userdata['user_id'];
+            $headerArr = [
+                'lang' => 'en',
+                'device_id' => $userdata['device_id'],
+                'security_token' => $userdata['security_token']
+            ];
+        } {
+            $strPost['user_id'] = '00';
+            $headerArr = ['lang' => 'en', 'device_id' => '', 'security_token' => ''];
+        }
+//        $data['myCart'] = $this->myCart();
+        $data['header'] = $this->get_header();
+//        echo "<pre>";print_r($data['header']['0']['sub_category']);die;
+        $data['view_link'] = 'cookie_policy';
+        $this->load->view('layout/template', $data);
+    }
+     public function acceptable_use_policy() {
+        if ($this->session->userdata('customer_logged_in')) {
+            $userdata = $this->session->userdata('customer_logged_in');
+            $strPost['user_id'] = $userdata['user_id'];
+            $headerArr = [
+                'lang' => 'en',
+                'device_id' => $userdata['device_id'],
+                'security_token' => $userdata['security_token']
+            ];
+        } {
+            $strPost['user_id'] = '00';
+            $headerArr = ['lang' => 'en', 'device_id' => '', 'security_token' => ''];
+        }
+//        $data['myCart'] = $this->myCart();
+        $data['header'] = $this->get_header();
+//        echo "<pre>";print_r($data['header']['0']['sub_category']);die;
+        $data['view_link'] = 'use_policy';
         $this->load->view('layout/template', $data);
     }
 

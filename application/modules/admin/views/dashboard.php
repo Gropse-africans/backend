@@ -31,7 +31,7 @@
 
                                     <i class="fa fa-home"></i>
 
-                                    <a class="parent-item" href="<?php echo base_url(''); ?>">Home</a>
+                                    <a class="parent-item" href="<?php echo base_url(); ?>admin/dashboard">Home</a>
 
                                     <i class="fa fa-angle-right"></i>
 
@@ -71,7 +71,7 @@
 
                                 <span class="info_items_text">No Of Users</span>
 
-                                <span class="info_items_number"><?=$users_count;?></span>
+                                <span class="info_items_number"><?= $users_count; ?></span>
 
                             </div>
 
@@ -95,7 +95,7 @@
 
                                 <span class="info_items_text">No Of  Vendors</span>
 
-                                <span class="info_items_number"><?=$vendor_count;?></span>
+                                <span class="info_items_number"><?= $vendor_count; ?></span>
 
                             </div>
 
@@ -116,7 +116,7 @@
 
                                 <span class="info_items_text">Total Order</span>
 
-                                <span class="info_items_number">2055</span>
+                                <span class="info_items_number"><?= $order_count ?></span>
 
                             </div>
 
@@ -129,15 +129,15 @@
 
                             <span class="info_items_icon">
 
-                                <i class="fa fa-money"></i>
+                                <i class="fa fa-archive"></i>
 
                             </span>
 
                             <div class="info_item_content">
 
-                                <span class="info_items_text">Total Sales</span>
+                                <span class="info_items_text">Total Booking</span>
 
-                                <span class="info_items_number">$ 15500</span>
+                                <span class="info_items_number"><?= $booking_count ?></span>
 
                             </div>
 
@@ -148,7 +148,7 @@
                 </div>
 
             </div>
-
+            
 
             <section class="student_list">
                 <div class="row">
@@ -156,7 +156,7 @@
                         <div class="full_chart card">
                             <div class="chart_header">
                                 <div class="chart_headibg">
-                                    <h3>Recent Added User</h3>
+                                    <h3>Recently Added User</h3>
                                 </div>
                                 <div class="tools">
                                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
@@ -179,27 +179,28 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            if($users){
+                                            if ($users) {
                                                 foreach ($users as $value) {
-                                            ?>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">#<?=$value['id'];?></span></td>
-                                                    <td><?=$value['name'];?></td>
-                                                    <td><?=$value['email'];?></td>
-                                                    <td><?=$value['mobile'];?></td>
-                                                    <td>
-                                                        <?php if($value['status']==1){
-                                                            echo '<span class="label label-success">Verify</span>';
-                                                        }elseif($value['status']==2){
-                                                            echo '<span class="label label-danger">Blocked</span>';
-                                                        }else{
-                                                             echo '<span class="label label-default">Un-verify</span>';
-                                                        }
                                                     ?>
+                                                    <tr>
+                                                        <td><span class="txt-dark weight-500">#<?= $value['id']; ?></span></td>
+                                                        <td><?= $value['name']; ?></td>
+                                                        <td><?= $value['email']; ?></td>
+                                                        <td><?= $value['mobile']; ?></td>
+                                                        <td>
+                                                            <?php
+                                                            if ($value['status'] == 1) {
+                                                                echo '<span class="label label-success">Verified</span>';
+                                                            } elseif ($value['status'] == 2) {
+                                                                echo '<span class="label label-danger">Blocked</span>';
+                                                            } else {
+                                                                echo '<span class="label label-default">Email Not Verified</span>';
+                                                            }
+                                                            ?>
                                                         </td>
-                                                    <td><a href="<?php echo base_url('admin/user-detail/'.$value['id']); ?>"><span class="label action-button"><i class="fa fa-eye"></i></span></a></td>
-                                                </tr>
-                                            <?php
+                                                        <td><a href="<?php echo base_url('admin/user-detail/' . $value['id']); ?>"><span class="label action-button"><i class="fa fa-eye"></i></span></a></td>
+                                                    </tr>
+                                                    <?php
                                                 }
                                             }
                                             ?>
@@ -218,7 +219,7 @@
                         <div class="full_chart card">
                             <div class="chart_header">
                                 <div class="chart_headibg">
-                                    <h3>Recent Added Vendor</h3>
+                                    <h3>Recently Added Vendor</h3>
                                 </div>
                                 <div class="tools">
                                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
@@ -241,27 +242,28 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            if($vendor){
+                                            if ($vendor) {
                                                 foreach ($vendor as $value) {
-                                            ?>
-                                                <tr>
-                                                    <td><span class="txt-dark weight-500">#<?=$value['id'];?></span></td>
-                                                    <td><?=$value['name'];?></td>
-                                                    <td><?=$value['email'];?></td>
-                                                    <td><?=$value['mobile'];?></td>
-                                                    <td>
-                                                        <?php if($value['status']==1){
-                                                            echo '<span class="label label-success">Verify</span>';
-                                                        }elseif($value['status']==2){
-                                                            echo '<span class="label label-danger">Blocked</span>';
-                                                        }else{
-                                                             echo '<span class="label label-default">Un-verify</span>';
-                                                        }
                                                     ?>
+                                                    <tr>
+                                                        <td><span class="txt-dark weight-500">#<?= $value['id']; ?></span></td>
+                                                        <td><?= $value['name']; ?></td>
+                                                        <td><?= $value['email']; ?></td>
+                                                        <td><?= $value['mobile']; ?></td>
+                                                        <td>
+                                                            <?php
+                                                            if ($value['status'] == 1) {
+                                                                echo '<span class="label label-success">Verified</span>';
+                                                            } elseif ($value['status'] == 2) {
+                                                                echo '<span class="label label-danger">Blocked</span>';
+                                                            } else {
+                                                                echo '<span class="label label-default">Email Not Verified</span>';
+                                                            }
+                                                            ?>
                                                         </td>
-                                                    <td><a href="<?php echo base_url('admin/vendor-detail/'.$value['id']); ?>"><span class="label action-button"><i class="fa fa-eye"></i></span></a></td>
-                                                </tr>
-                                            <?php
+                                                        <td><a href="<?php echo base_url('admin/vendor-detail/' . $value['id']); ?>"><span class="label action-button"><i class="fa fa-eye"></i></span></a></td>
+                                                    </tr>
+                                                    <?php
                                                 }
                                             }
                                             ?>

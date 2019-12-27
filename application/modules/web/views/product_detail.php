@@ -1,3 +1,8 @@
+<style>
+    .productpage .product-description td {
+    min-width: 100px;
+}
+</style>
 <div id="product-product" class="container">
     <div class="row">
         <div id="content" class="col-sm-12 productpage">
@@ -66,23 +71,31 @@
                     <div id="product">
                         <?php if ($products['quantity']): ?>
                             <div class="row">
-<!--                                <div class="col-md-6">
-                                    <div class="form-group required">
-                                        <label class="control-label" for="input-quantity">Qty</label>
-                                        <input type="text" name="quantity" value="1" class="form-control" />
-                                        <input type="hidden" name="product_id" value="30" />
-
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="col-md-6">
+                                                                    <div class="form-group required">
+                                                                        <label class="control-label" for="input-quantity">Qty</label>
+                                                                        <input type="text" name="quantity" value="1" class="form-control" />
+                                                                        <input type="hidden" name="product_id" value="30" />
+                                
+                                                                    </div>
+                                                                </div>-->
                             </div>
                         <?php endif; ?>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group prd_page prodetailcart">
                                     <?php if ($products['quantity']): ?>
-                                        <button type="button" class="btn btn-primary cart btn-lg" onclick="<?php if($this->session->userdata('customer_logged_in')):echo 'addtowishlist('.$products['product_id'].')';else: echo 'checkout()';endif;?>;"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                        <button type="button" class="btn btn-primary cart btn-lg" onclick="<?php
+                                        if ($this->session->userdata('customer_logged_in')):echo 'addtowishlist(' . $products['product_id'] . ')';
+                                        else: echo 'checkout()';
+                                        endif;
+                                        ?>;"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                                     <?php endif; ?>
-                                    <button type="button" class="btn btn-default wishlist" title="Add to Wish List" onclick="<?php if($this->session->userdata('customer_logged_in')):echo 'addtowishlist('.$products['product_id'].')';else: echo 'checkout()';endif;?>;"><?=$products['is_fav']?'Remove from Wish List':'<i class="fa fa-heart"></i>Add to Wish List'?> </button>
+                                    <button type="button" class="btn btn-default wishlist" title="Add to Wish List" onclick="<?php
+                                    if ($this->session->userdata('customer_logged_in')):echo 'addtowishlist(' . $products['product_id'] . ')';
+                                    else: echo 'checkout()';
+                                    endif;
+                                    ?>;"><?= $products['is_fav'] ? 'Remove from Wish List' : '<i class="fa fa-heart"></i> Add to Wish List' ?> </button>
                                 </div>
                             </div>
                         </div>
@@ -96,33 +109,45 @@
                                 <li><a class="first" href="#tab-1" style="display: inline;">Description</a></li>
                                 <?php if ($products['attribute']): ?>
                                     <li><a class="fourth" href="#tab-2" style="display: inline;">Features</a></li>
-                                <?php endif;
+                                    <?php
+                                endif;
                                 if ($products['specification']):
                                     ?>
                                     <li><a class="third" href="#tab-3" style="display: inline;">Specification</a></li>
-                                <?php endif;
-                                if ($vendor): ?>
+                                <?php
+                                endif;
+                                if ($vendor):
+                                    ?>
                                     <li><a class="second" href="#tab-4" style="display: inline;">Vendor Information</a></li>
-<?php endif; ?>
+                        <?php endif; ?>
                             </ul>
                         </div>
                         <div class="tab_product" id="tab-1">
                             <p><?= $products['description'] ?></p>
                         </div>
-
-                        <div class="tab_product" id="tab-3">
+                        <?php if ($products['specification']): ?>
+                            <div class="tab_product" id="tab-3">
                             <?php foreach ($products['specification'] as $specification): ?>
-                                <span><strong><?= $specification['attribute'] ?> :</strong></span><?= $specification['value'] ?><br>
+                                    <span><strong><?= $specification['attribute'] ?> :</strong></span><?= $specification['value'] ?><br>
                             <?php endforeach; ?>
-                        </div>
-                        <div class="tab_product" id="tab-2">  
+                            </div>
+                                <?php
+                            endif;
+                            if ($products['attribute']):
+                                ?>
+                            <div class="tab_product" id="tab-2">  
                             <?php foreach ($products['attribute'] as $feature): ?>
-                                <span><strong><?= $feature['attribute'] ?> :</strong></span><?= $feature['attribute_value'] ?><br>
-<?php endforeach; ?>
-                        </div>
-                        <div class="tab_product" id="tab-4">  
-                            <h4><?= $vendor['user_name'] ?></h4>
-                        </div>
+                                    <span><strong><?= $feature['attribute'] ?> :</strong></span><?= $feature['attribute_value'] ?><br>
+    <?php endforeach; ?>
+                            </div>
+                        <?php
+                        endif;
+                        if ($vendor):
+                            ?>
+                            <div class="tab_product" id="tab-4">  
+                                <h4><?= $vendor['user_name'] ?></h4>
+                            </div>
+<?php endif; ?>
                     </div>
                 </div>
                 <div class="cl-sm-12">
@@ -152,7 +177,7 @@
                         </div>
 
                         <div class="box-product product-carousel" id="bestseller-carousel">
-    <?php foreach ($similar_products as $s_products): ?>
+                                                <?php foreach ($similar_products as $s_products): ?>
                                 <div class="slider-item">
                                     <div class="product-block product-thumb transition">
                                         <div class="product-block-inner">
@@ -161,7 +186,8 @@
                                                     <?php foreach ($s_products['images'] as $key => $image): if ($key == 0): ?>
                                                             <img style="height:100%" src="<?= $image['file_path'] . $image['file_name'] ?>" title="<?= $s_products['name'] ?>" alt="<?= $s_products['name'] ?>" class="img-responsive" />
                                                             <!--<img class="img-responsive hover-image" src="<?php echo base_url(); ?>assets/web/images/product/01.png" title="<?= $product['name'] ?> " alt="<?= $product['name'] ?> " />-->
-            <?php endif;
+                <?php
+            endif;
         endforeach;
         ?>
                                                 </a>
@@ -169,7 +195,7 @@
                                             <div class="product-details">
                                                 <div class="caption">
                                                     <div class="rating">
-                                                        <?php for ($j = 1; $j <= 5; $j++):if ($s_products['rating'] >= $j): ?>
+        <?php for ($j = 1; $j <= 5; $j++):if ($s_products['rating'] >= $j): ?>
                                                                 <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
             <?php else: ?>
                                                                 <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
@@ -183,11 +209,19 @@
 
                                                 <div class="product_hover_block">
                                                     <div class="action">
-                                                        <button type="button" class="cart_button" onclick="<?php if($this->session->userdata('customer_logged_in')):echo 'addtowishlist('.$s_products['product_id'].')';else: echo 'checkout()';endif;?>;" title="Add to Cart"><i class="fa fa-shopping-cart" area-hidden="true"></i> </button>
+                                                        <button type="button" class="cart_button" onclick="<?php
+                                                        if ($this->session->userdata('customer_logged_in')):echo 'addtowishlist(' . $s_products['product_id'] . ')';
+                                                        else: echo 'checkout()';
+                                                        endif;
+                                                        ?>;" title="Add to Cart"><i class="fa fa-shopping-cart" area-hidden="true"></i> </button>
                                                         <div class="quickview-button">
                                                             <a class="quickbox" title="View" href="<?php echo base_url(); ?>product-detail/<?= $s_products['product_id'] ?>"><i class="fa fa-eye"></i></a>
                                                         </div>
-                                                        <button class="wishlist <?=$s_products['is_fav']?'fav':''?>" type="button" title="<?=$s_products['is_fav']?'Remove from Wish List':'Add to Wish List'?>" onclick="<?php if($this->session->userdata('customer_logged_in')):echo 'addtowishlist('.$s_products['product_id'].')';else: echo 'checkout()';endif;?>;"><i class="fa fa-heart"></i></button>
+                                                        <button class="wishlist <?= $s_products['is_fav'] ? 'fav' : '' ?>" type="button" title="<?= $s_products['is_fav'] ? 'Remove from Wish List' : 'Add to Wish List' ?>" onclick="<?php
+                                                        if ($this->session->userdata('customer_logged_in')):echo 'addtowishlist(' . $s_products['product_id'] . ')';
+                                                        else: echo 'checkout()';
+                                                        endif;
+                                                        ?>;"><i class="fa fa-heart"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,8 +239,8 @@
     </div>
 <?php endif; ?>
 <script>
-function changeImage(obj){
-    var src=$(obj).attr('src');
-    $('#tmzoom').attr('src',src);
-}
+    function changeImage(obj) {
+        var src = $(obj).attr('src');
+        $('#tmzoom').attr('src', src);
+    }
 </script>

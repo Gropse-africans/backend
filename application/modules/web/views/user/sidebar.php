@@ -8,7 +8,7 @@
             <a href="<?php echo base_url('wishlist'); ?> " class="list-group-item">My Wishlist</a>
             <!--<a href="<?php echo base_url('order-history'); ?> " class="list-group-item">Order History</a>-->
             <!--<a href="<?php echo base_url('my-transaction'); ?> " class="list-group-item">My Transactions</a>-->
-            <a href="<?php echo base_url('logout'); ?> " class="list-group-item">Logout</a>
+            <!--<a href="<?php echo base_url('logout'); ?> " class="list-group-item">Logout</a>-->
         </div>
     </div>
 </aside>

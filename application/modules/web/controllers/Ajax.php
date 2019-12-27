@@ -276,6 +276,7 @@ class Ajax extends MX_Controller {
             $strPost['user_id'] = '00';
         }
         $strPost['product_id'] = $this->input->post('product');
+        $strPost['type'] = 1;
         $headerArr = ['lang' => 'en', 'device_id' => $user['device_id'], 'security_token' => $user['security_token']];
         $returnData = $this->Api_model->apiCallHeader('addToFavourite', $headerArr, $strPost);
         $returnArr = json_decode($returnData, true);

@@ -90,7 +90,7 @@
                                         foreach ($ads as $ad): ?>
                                             <tr>
                                                 <td><?= $count ?></td>
-                                                <td><div style="width:250px;max-height:200px;"><a href="<?= $ad['image'] ?>" target="_blank" title="<?= $ad['name'] ?>"><img src="<?= $ad['image'] ?>" class="img-fluid" alt="<?= $ad['name'] ?> img" ></a></div></td>
+                                                <td class="product-tab-img"><a href="<?=$ad['image'];?>" target="_blank"><img style="width: 100px;height: auto;" src="<?=$ad['image'];?>"></a></td>
                                                 <td><?= $ad['name'] ?></td>
                                                 <td><?= $ad['description'] ?></td>
                                                 <td>                                                                                                                                   
@@ -105,7 +105,7 @@
                                                         </label>
                                                          
                                                     </div>-->
-                                                <?= $ad['status'] ? '<span class="text-success">enabled</span>' : '<span class="text-danger">disabled</span>' ?>
+                                                <?= $ad['status']==1 ? '<span class="text-success">enabled</span>' : '<span class="text-danger">disabled</span>' ?>
                                                 </td>  
                                                 <td>
                                                     <a href="<?php echo base_url(); ?>vendor/advertisement-detail/<?=$ad['id']?>"><span class="label action-button"><i class="fa fa-eye"></i></span></a>

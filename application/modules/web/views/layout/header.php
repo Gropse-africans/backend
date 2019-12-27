@@ -128,7 +128,7 @@
                                 <a href="<?= base_url(); ?>"><img src="<?= base_url() ?>assets/web/images/logo/logo_header.png" title="Africa Supermarket" alt="Africa Supermarket" class="img-responsive" /></a>
                             </div>
                         </div>
-                        <div class="header_center">
+                        <div class="header_center" style="margin: 2px 0px 0px 100px;">
                             <div class="col-sm-4 header_search">
                                 <div id="searchbox" class="input-group searchtoggle">
                                     <form method="post" action="<?= base_url() ?>search-results">
@@ -158,15 +158,15 @@
                         </div>
                         <div class="header_right">
                             <div class="headertop-text">
-                                <div class="second-content main-content">
-                                    <div class="cms_content">
-                                        <div class="cms_img2"></div>
-                                        <div class="cms-block">
-                                            <div class="cms_subtitle">Vendor</div>
-                                            <div class="cms_title "><a  class="text-white" href="<?= base_url() ?>vendor">Signin/Signup</a></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--<div class="second-content main-content">-->
+                                    <!--<div class="cms_content">-->
+                                    <!--    <div class="cms_img2"></div>-->
+                                    <!--    <div class="cms-block">-->
+                                    <!--        <div class="cms_subtitle">Vendor</div>-->
+                                    <!--        <div class="cms_title "><a  class="text-white" href="<?= base_url() ?>vendor">Signin/Signup</a></div>-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                                 <div class="address-content main-content">
                                     <div class="cms_content">
                                         <div class="cms_img3"></div>
@@ -197,7 +197,7 @@
 //                                                }
                                             ?>
                                             <div class="cms_subtitle"><a id="edit" href="#searchlocation" data-toggle="modal">Location <i class="fa fa-pencil"></i></a></div>
-                                            <div class="cms_title" id="locator"><?= $address ?></div>
+                                            <div class="cms_title" id="locator"><a title="<?= $address ?>" class="text-white"><?php //$pos=strpos($address, ',', 20);echo substr($address,0,$pos );   ?><?=$address?></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -267,6 +267,7 @@ endif; ?>
                                             <li class="menu-item"><a href="<?= base_url() ?>advertisement-list">Advertisement</a></li>
                                             <li><a href="<?= base_url() ?>about-us">About  Us</a></li>
                                             <li><a href="<?= base_url() ?>contact-us">Contact Us</a></li>
+                                            <li><a href="<?= base_url() ?>vendor">Our Partner</a></li>
                                         </ul>
                                     </div>
 
@@ -299,8 +300,8 @@ if ($user) {
                                             <div class="cart_detail">
                                                 <div class="cart_image"></div><span id="cart-total">
                                                     <!--<span class="item-count">2</span>-->
-                                                    <!--<span class="mycart">My cart</span>--> 
-                                                    <!--<span class="price"> $500.00 </span>-->
+                                                    <span class="mycart">My cart</span>
+                                                    <span class="price"> $0 </span>
 
                                                 </span>
                                             </div>
